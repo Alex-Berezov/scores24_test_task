@@ -1,0 +1,1 @@
+export const selectLists = (state: { lists: any }) => state.lists

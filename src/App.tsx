@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { action } from './redux/index'
+import { ListsActionType } from './Types/ListsTypes'
+import { ItemsActionType } from './Types/CompletedItemsTypes'
+import { selectLists } from './redux/reducers/lists/selectors'
+import ListGroup from './components/ListGroup/index'
 
-function App() {
+import './app.scss'
+
+const App: FC = () => {
+
+  useEffect(() => {
+    action(ListsActionType.FETCH_LISTS)
+    action(ItemsActionType.FETCH_ITEMS)
+  }, [])
+
+  const listsData = useSelector(selectLists)?.lists
+
+  console.log('====================================');
+  console.log('listsData >>', listsData);
+  console.log('====================================');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Working</h1>
+      <ListGroup listsData={listsData} />
     </div>
   );
 }
