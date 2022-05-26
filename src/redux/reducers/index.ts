@@ -1,10 +1,8 @@
 import { combineReducers } from "redux"
-import { listsReducer } from './lists/index';
-import { completedItemsReducer } from './completedItems/index';
+import { listsReducer } from './lists/index'
 
 const rootReducer = combineReducers({
-  lists: listsReducer,
-  completedItems: completedItemsReducer
+  lists: listsReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>
