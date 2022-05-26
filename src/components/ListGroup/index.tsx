@@ -15,7 +15,7 @@ const ListGroup: FC<ListGroupProps> = ({ listsData }) => {
   const JSList = listsData.filter((item: IList) => item.category === 'JavaScript')
   const DOMList = listsData.filter((item: IList) => item.category === 'DOM Manipulation')
 
-  const [value, setValue] = useLocalStorage('completedItems', [])
+  const [initial, setValue] = useLocalStorage('completedItems', [])
 
   const handleItemClick = (id: string) => {
     setValue(id)
@@ -23,10 +23,10 @@ const ListGroup: FC<ListGroupProps> = ({ listsData }) => {
 
   return (
     <div className="lists__group">
-      <List list={HTMLList} header={'HTML'} setCompleted={handleItemClick} />
-      <List list={CSSList} header={'CSS'} setCompleted={handleItemClick} />
-      <List list={JSList} header={'JavaScript'} setCompleted={handleItemClick} />
-      <List list={DOMList} header={'DOM Manipulation'} setCompleted={handleItemClick} />
+      <List list={HTMLList} header={'HTML'} setCompleted={handleItemClick} completedItems={initial} />
+      <List list={CSSList} header={'CSS'} setCompleted={handleItemClick} completedItems={initial} />
+      <List list={JSList} header={'JavaScript'} setCompleted={handleItemClick} completedItems={initial} />
+      <List list={DOMList} header={'DOM Manipulation'} setCompleted={handleItemClick} completedItems={initial} />
     </div>
   );
 };
