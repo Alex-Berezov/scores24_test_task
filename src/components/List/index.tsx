@@ -13,10 +13,6 @@ interface ListProps {
 const List: FC<ListProps> = ({ list, header, setCompleted, completedItems }) => {
   const [matches, setMatches] = useState<string[]>([])
 
-  const handleChangeItem = (id: string) => {
-    setCompleted(id)
-  }
-
   useEffect(() => {
     const arrayOfMatches: string[] = []
 
@@ -39,7 +35,7 @@ const List: FC<ListProps> = ({ list, header, setCompleted, completedItems }) => 
       {
         list.map((list: IList) => {
           return (
-            <div className="lists__group_body-item" key={list.id} onClick={() => handleChangeItem(list.id)}>
+            <div className="lists__group_body-item" key={list.id} onClick={() => setCompleted(list.id)}>
               <div className={
                 completedItems.find(item => item === list.id)
                   ? 'lists__group_body-item-circle done'

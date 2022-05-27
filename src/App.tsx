@@ -1,24 +1,17 @@
-import React, { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { action } from './redux/index'
-import { ListsActionType } from './Types/ListsTypes'
 import { selectLists } from './redux/reducers/lists/selectors'
-import ListGroup from './components/ListGroup/index'
+import Dashboard from './pages/Dashboard/index'
 
 import './app.scss'
 
+
 const App: FC = () => {
-
-  useEffect(() => {
-    action(ListsActionType.FETCH_LISTS)
-  }, [])
-
-  const listsData = useSelector(selectLists)?.lists
+  const listsData = useSelector(selectLists)
 
   return (
     <div className="app">
-      <h1>Working</h1>
-      <ListGroup listsData={listsData} />
+      <Dashboard listsData={listsData} />
     </div>
   );
 }
